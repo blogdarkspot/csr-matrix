@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 void csr_create(sparse_matrix_t **csr_matrix, 
-		double **matrix,
+		int **matrix,
 		const int length, const int width)
 {
 	*csr_matrix = malloc(sizeof(sparse_matrix_t));
@@ -13,7 +13,7 @@ void csr_create(sparse_matrix_t **csr_matrix,
 		(*csr_matrix)->n = length;
 		(*csr_matrix)->l = width;
 
-		(*csr_matrix)->vals = malloc( sizeof(double) 
+		(*csr_matrix)->vals = malloc( sizeof(int) 
 				* width * length);
 		(*csr_matrix)->cols = malloc(sizeof(unsigned int) 
 				* width * length);
@@ -37,7 +37,7 @@ void csr_create(sparse_matrix_t **csr_matrix,
 			(*csr_matrix)->rows[i] = size;
 		}
 		(*csr_matrix)-> vals = 
-			realloc((*csr_matrix)->vals, sizeof(double) * size);
+			realloc((*csr_matrix)->vals, sizeof(int) * size);
 		(*csr_matrix)->cols = 
 			realloc((*csr_matrix)->cols, sizeof(unsigned int) * size);
 		(*csr_matrix)->rows = 
